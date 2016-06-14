@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>496</width>
-    <height>973</height>
+    <height>1067</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -682,47 +682,32 @@
                      <item>
                       <layout class="QVBoxLayout" name="_10">
                        <item>
-                        <widget class="QSlider" name="m_XTransSlider">
-                         <property name="cursor">
-                          <cursorShape>ArrowCursor</cursorShape>
-                         </property>
-                         <property name="toolTip">
-                          <string/>
-                         </property>
+                        <widget class="QSpinBox" name="m_XTransSlider">
                          <property name="minimum">
-                          <number>-10000</number>
+                          <number>-20000</number>
                          </property>
                          <property name="maximum">
-                          <number>10000</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>20000</number>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QSlider" name="m_YTransSlider">
+                        <widget class="QSpinBox" name="m_YTransSlider">
                          <property name="minimum">
-                          <number>-10000</number>
+                          <number>-20000</number>
                          </property>
                          <property name="maximum">
-                          <number>10000</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>20000</number>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QSlider" name="m_ZTransSlider">
+                        <widget class="QSpinBox" name="m_ZTransSlider">
                          <property name="minimum">
-                          <number>-10000</number>
+                          <number>-20000</number>
                          </property>
                          <property name="maximum">
-                          <number>10000</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>20000</number>
                          </property>
                         </widget>
                        </item>
@@ -817,47 +802,32 @@
                      <item>
                       <layout class="QVBoxLayout" name="_15">
                        <item>
-                        <widget class="QSlider" name="m_XRotSlider">
-                         <property name="cursor">
-                          <cursorShape>ArrowCursor</cursorShape>
-                         </property>
-                         <property name="toolTip">
-                          <string/>
-                         </property>
+                        <widget class="QSpinBox" name="m_XRotSlider">
                          <property name="minimum">
-                          <number>-20</number>
+                          <number>-180</number>
                          </property>
                          <property name="maximum">
-                          <number>20</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>180</number>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QSlider" name="m_YRotSlider">
+                        <widget class="QSpinBox" name="m_YRotSlider">
                          <property name="minimum">
-                          <number>-20</number>
+                          <number>-180</number>
                          </property>
                          <property name="maximum">
-                          <number>20</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>180</number>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QSlider" name="m_ZRotSlider">
+                        <widget class="QSpinBox" name="m_ZRotSlider">
                          <property name="minimum">
-                          <number>-20</number>
+                          <number>-180</number>
                          </property>
                          <property name="maximum">
-                          <number>20</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>180</number>
                          </property>
                         </widget>
                        </item>
@@ -952,65 +922,32 @@
                      <item>
                       <layout class="QVBoxLayout" name="_18">
                        <item>
-                        <widget class="QSlider" name="m_XScaleSlider">
-                         <property name="cursor">
-                          <cursorShape>ArrowCursor</cursorShape>
-                         </property>
-                         <property name="toolTip">
-                          <string/>
-                         </property>
+                        <widget class="QSpinBox" name="m_XScaleSlider">
                          <property name="minimum">
-                          <number>-180</number>
+                          <number>-20</number>
                          </property>
                          <property name="maximum">
-                          <number>180</number>
-                         </property>
-                         <property name="singleStep">
-                          <number>1</number>
-                         </property>
-                         <property name="pageStep">
-                          <number>1</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
-                         </property>
-                         <property name="invertedAppearance">
-                          <bool>false</bool>
-                         </property>
-                         <property name="tickPosition">
-                          <enum>QSlider::NoTicks</enum>
+                          <number>20</number>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QSlider" name="m_YScaleSlider">
+                        <widget class="QSpinBox" name="m_YScaleSlider">
                          <property name="minimum">
-                          <number>-180</number>
+                          <number>-20</number>
                          </property>
                          <property name="maximum">
-                          <number>180</number>
-                         </property>
-                         <property name="pageStep">
-                          <number>1</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>20</number>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QSlider" name="m_ZScaleSlider">
+                        <widget class="QSpinBox" name="m_ZScaleSlider">
                          <property name="minimum">
-                          <number>-180</number>
+                          <number>-20</number>
                          </property>
                          <property name="maximum">
-                          <number>180</number>
-                         </property>
-                         <property name="pageStep">
-                          <number>1</number>
-                         </property>
-                         <property name="orientation">
-                          <enum>Qt::Horizontal</enum>
+                          <number>20</number>
                          </property>
                         </widget>
                        </item>

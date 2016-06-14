@@ -970,8 +970,11 @@ void QmitkRigidRegistrationView::Translate(int* translateVector)
     for (unsigned long i = 0; i < size; ++i)
     {
       childNode = children->GetElement(i);
-      childNode->GetData()->GetGeometry()->Compose( translationMatrix );
-      childNode->GetData()->Modified();
+      mitk::BaseData *baseData = childNode->GetData();
+      if (baseData != nullptr){
+          baseData->GetGeometry()->Compose( translationMatrix );
+          baseData->Modified();
+      }
     }
     m_RedoGeometryList.clear();
 
@@ -1017,8 +1020,11 @@ void QmitkRigidRegistrationView::Rotate(int* rotateVector)
     for (unsigned long i = 0; i < size; ++i)
     {
       childNode = children->GetElement(i);
-      childNode->GetData()->GetGeometry()->Compose( translationMatrix );
-      childNode->GetData()->Modified();
+      mitk::BaseData *baseData = childNode->GetData();
+      if (baseData != nullptr) {
+          baseData->GetGeometry()->Compose( translationMatrix );
+          baseData->Modified();
+      }
     }
 
     double radianX = rotateVec[0] * vnl_math::pi / 180;
@@ -1051,8 +1057,11 @@ void QmitkRigidRegistrationView::Rotate(int* rotateVector)
     for (unsigned long i = 0; i < size; ++i)
     {
       childNode = children->GetElement(i);
-      childNode->GetData()->GetGeometry()->Compose( rotationMatrix );
-      childNode->GetData()->Modified();
+      mitk::BaseData *baseData = childNode->GetData();
+      if (baseData != nullptr) {
+          baseData->GetGeometry()->Compose( rotationMatrix );
+          baseData->Modified();
+      }
     }
 
     translationMatrix->Invert();
@@ -1061,8 +1070,11 @@ void QmitkRigidRegistrationView::Rotate(int* rotateVector)
     for (unsigned long i = 0; i < size; ++i)
     {
       childNode = children->GetElement(i);
-      childNode->GetData()->GetGeometry()->Compose( translationMatrix );
-      childNode->GetData()->Modified();
+      mitk::BaseData *baseData = childNode->GetData();
+      if (baseData != nullptr) {
+          baseData->GetGeometry()->Compose( translationMatrix );
+          baseData->Modified();
+      }
     }
     m_MovingNode->GetData()->Modified();
     m_RedoGeometryList.clear();
@@ -1145,8 +1157,11 @@ void QmitkRigidRegistrationView::Scale(int* scaleVector)
     for (unsigned long i = 0; i < size; ++i)
     {
       childNode = children->GetElement(i);
-      childNode->GetData()->GetGeometry()->Compose( scalingMatrix );
-      childNode->GetData()->Modified();
+      mitk::BaseData *baseData = childNode->GetData();
+      if (baseData != nullptr) {
+          baseData->GetGeometry()->Compose( scalingMatrix );
+          baseData->Modified();
+      }
     }
     m_RedoGeometryList.clear();
 
@@ -1408,6 +1423,7 @@ void QmitkRigidRegistrationView::Calculate()
   m_Controls.frame_3->setEnabled(false);
   m_Controls.m_CalculateTransformation->setEnabled(false);
   m_Controls.m_StopOptimization->setEnabled(true);
+  m_Controls.qmitkRigidRegistrationSelector1->SetMovingNodeChildren(this->GetDataStorage()->GetDerivations(m_MovingNode));
   m_Controls.qmitkRigidRegistrationSelector1->CalculateTransformation(((QmitkSliderNavigatorWidget*)m_Controls.timeSlider)->GetPos());
   m_Controls.m_StopOptimization->setEnabled(false);
   m_Controls.frame_2->setEnabled(true);
