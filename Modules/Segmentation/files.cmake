@@ -62,6 +62,7 @@ set(CPP_FILES
   Interactions/mitkTool.cpp
   Interactions/mitkToolCommand.cpp
   Interactions/mitkWatershedTool.cpp
+  Interactions/mitkBodyDetectionTool.cpp
   Interactions/mitkPickingTool.cpp
   #IO/mitkContourModelIOFactory.cpp
   #IO/mitkContourModelReader.cpp
@@ -103,6 +104,7 @@ set(RESOURCE_FILES
   TwoThresholds_48x48.png
   Watershed_48x48.png
   Watershed_Cursor_32x32.png
+  Body_48x48.png
   Wipe_48x48.png
   Wipe_Cursor_32x32.png
 

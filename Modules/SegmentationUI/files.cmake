@@ -24,6 +24,7 @@ Qmitk/QmitkToolRoiDataSelectionBox.cpp
 Qmitk/QmitkToolSelectionBox.cpp
 Qmitk/QmitkToolWorkingDataSelectionBox.cpp
 Qmitk/QmitkWatershedToolGUI.cpp
+Qmitk/QmitkBodyDetectionToolGUI.cpp
 )
 
 set(MOC_H_FILES
@@ -51,6 +52,7 @@ Qmitk/QmitkToolRoiDataSelectionBox.h
 Qmitk/QmitkToolSelectionBox.h
 Qmitk/QmitkToolWorkingDataSelectionBox.h
 Qmitk/QmitkWatershedToolGUI.h
+Qmitk/QmitkBodyDetectionToolGUI.h
 )
 
 set(UI_FILES
