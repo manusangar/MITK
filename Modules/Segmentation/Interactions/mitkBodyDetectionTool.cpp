@@ -35,6 +35,10 @@ See LICENSE.txt or http://www.mitk.org for details.
 #include <itkImageRegionIterator.h>
 #include <itkBinaryThresholdImageFilter.h>
 #include <itkBinaryFillholeImageFilter.h>
+#include <itkBinaryBallStructuringElement.h>
+#include <itkBinaryErodeImageFilter.h>
+#include <itkBinaryDilateImageFilter.h>
+#include <itkSliceBySliceImageFilter.h>
 #include "mitkPadImageFilter.h"
 #include "mitkMaskAndCutRoiImageFilter.h"
 #include "mitkLabelSetImage.h"
@@ -352,16 +356,41 @@ void mitk::BodyDetectionTool::UpdatePreview()
 }
 
 template <typename TPixel, unsigned int VImageDimension>
-void mitk::BodyDetectionTool::ITKDetectBody(itk::Image<TPixel, VImageDimension> *original, mitk::Image::Pointer& resultImage) {
-  typedef itk::Image<TPixel, VImageDimension> ImageType;
-  typedef typename itk::BinaryFillholeImageFilter<ImageType> FillHoleFilterType;
+void mitk::BodyDetectionTool::ITKDetectBody(itk::Image<TPixel, VImageDimension> *original, Image* segmentation, unsigned int timestep) {
+  typedef itk::Image< TPixel, VImageDimension > ImageType;
+  typedef itk::BinaryBallStructuringElement<TPixel, VImageDimension> BallType;
+  typedef typename itk::BinaryFillholeImageFilter< itk::Image<TPixel, 2> > FillHoleFilterType;
+  typedef typename itk::BinaryErodeImageFilter<ImageType, ImageType, BallType> BallErodeFilterType;
+  typedef typename itk::BinaryDilateImageFilter<ImageType, ImageType, BallType> BallDilateFilterType;
+  typedef typename itk::SliceBySliceImageFilter<ImageType, ImageType> SliceFilter;
+
+  BallType strel;
+  strel.SetRadius(3);
+  strel.CreateStructuringElement();
+
+  typename BallErodeFilterType::Pointer erodeFilter = BallErodeFilterType::New();
+  erodeFilter->SetKernel(strel);
+  erodeFilter->SetInput(original);
+  erodeFilter->SetErodeValue(1);
+
+  typename BallDilateFilterType::Pointer dilateFilter = BallDilateFilterType::New();
+  dilateFilter->SetKernel(strel);
+  dilateFilter->SetDilateValue(1);
+  dilateFilter->SetInput(erodeFilter->GetOutput());
 
   typename FillHoleFilterType::Pointer fillHoleFilter = FillHoleFilterType::New();
-  fillHoleFilter->SetInput(original);
+  //fillHoleFilter->SetInput(dilateFilter->GetOutput());
   fillHoleFilter->SetForegroundValue(1);
-  fillHoleFilter->UpdateLargestPossibleRegion();
+  //fillHoleFilter->UpdateLargestPossibleRegion();
 
-  mitk::CastToMitkImage(fillHoleFilter->GetOutput(), resultImage);
+  typename SliceFilter::Pointer sliceFilter = SliceFilter::New();
+  sliceFilter->SetFilter(fillHoleFilter);
+  sliceFilter->SetInput(dilateFilter->GetOutput());
+  sliceFilter->UpdateLargestPossibleRegion();
+
+  segmentation->SetVolume((void*)(sliceFilter->GetOutput()->GetPixelContainer()->GetBufferPointer()), timestep);
+
+  //mitk::CastToMitkImage(fillHoleFilter->GetOutput(), resultImage);
 }
 
 void mitk::BodyDetectionTool::DetectBody() {
@@ -375,7 +404,7 @@ void mitk::BodyDetectionTool::DetectBody() {
       timeSelector->SetTimeNr(timeStep);
       timeSelector->UpdateLargestPossibleRegion();
       Image::Pointer feedBackImage3D = timeSelector->GetOutput();
-      AccessByItk_1(feedBackImage3D, ITKDetectBody, feedBackImage3D);
+      AccessFixedDimensionByItk_2(feedBackImage3D, ITKDetectBody, 3, previewImage, timeStep);
     }
 
     RenderingManager::GetInstance()->RequestUpdateAll();

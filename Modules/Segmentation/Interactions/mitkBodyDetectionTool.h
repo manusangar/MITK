@@ -67,10 +67,14 @@ class MITKSEGMENTATION_EXPORT BodyDetectionTool : public AutoSegmentationTool
     void UpdatePreview();
 
     template <typename TPixel, unsigned int VImageDimension>
-    void ITKThresholding( itk::Image<TPixel, VImageDimension>* originalImage, mitk::Image* segmentation, double thresholdValue, unsigned int timeStep );
+    void ITKThresholding(itk::Image<TPixel, VImageDimension>* originalImage, 
+                         mitk::Image* segmentation, double thresholdValue, 
+                         unsigned int timeStep );
     
     template <typename TPixel, unsigned int VImageDimension>
-    void ITKDetectBody(itk::Image<TPixel, VImageDimension>* original, mitk::Image::Pointer& resultImage);
+    void ITKDetectBody(itk::Image<TPixel, VImageDimension>* original, 
+                       mitk::Image* resultImage,
+                       unsigned int timestep);
 
     DataNode::Pointer m_ThresholdFeedbackNode;
     DataNode::Pointer m_OriginalImageNode;
