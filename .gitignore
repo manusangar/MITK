@@ -41,6 +41,9 @@ tramp
 .org-id-locations
 *_archive
 
+# VStudio code
+.vscode
+
 ########## OS specific
 
 ## Windows files to ignore
