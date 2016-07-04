@@ -42,7 +42,7 @@ tramp
 *_archive
 
 # VStudio code
-.vscode
+.vscode/
 
 ########## OS specific
 
