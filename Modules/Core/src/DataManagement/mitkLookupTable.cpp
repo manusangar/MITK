@@ -26,6 +26,7 @@ See LICENSE.txt or http://www.mitk.org for details.
 #include <Colortables/HotIron.h>
 #include <Colortables/PETColor.h>
 #include <Colortables/PET20.h>
+#include <Colortables/FIRE.h>
 
 const char* const mitk::LookupTable::typenameList[] =
 {
@@ -39,6 +40,7 @@ const char* const mitk::LookupTable::typenameList[] =
   "Multilabel",
   "PET Color",
   "PET 20",
+  "FIRE",
   "END_OF_ARRAY" // Do not add typenames after this entry (see QmitkDataManagerView::ColormapMenuAboutToShow())
 };
 
@@ -107,6 +109,9 @@ void mitk::LookupTable::SetType(const mitk::LookupTable::LookupTableType type)
     break;
   case (mitk::LookupTable::PET_20):
     this->BuildPET20LookupTable();
+    break;
+  case (mitk::LookupTable::FIRE):
+    this->BuildFIRELookupTable();
     break;
   case (mitk::LookupTable::LEGACY_RAINBOW_COLOR):
     this->BuildLegacyRainbowColorLookupTable();
@@ -496,6 +501,17 @@ void mitk::LookupTable::BuildPET20LookupTable()
     lut->SetTableValue(i, (double)PET20[i][0]/255.0, (double)PET20[i][1]/255.0, (double)PET20[i][2]/255.0, 1.0);
   }
 
+  m_LookupTable = lut;
+  this->Modified();
+}
+
+void mitk::LookupTable::BuildFIRELookupTable() {
+  vtkSmartPointer<vtkLookupTable> lut = vtkSmartPointer<vtkLookupTable>::New();
+  lut->SetNumberOfTableValues(256);
+  lut->SetTableRange((m_Level - m_Window/2.0), (m_Level + m_Window/2.0));
+  for (int i=0; i<256; i++) {
+    lut->SetTableValue(i, (double)FIRE_LUT[i][0]/255.0, (double)FIRE_LUT[i][1]/255.0, (double)FIRE_LUT[i][2]/255.0);
+  }
   m_LookupTable = lut;
   this->Modified();
 }

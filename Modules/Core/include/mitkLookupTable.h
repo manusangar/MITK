@@ -197,6 +197,7 @@ public:
    * \li MULTILABEL A LookupTable for multilabel images.
    * \li PET_COLOR A LookupTable for PET color rendering.
    * \li PET_20 A LookupTable for PET_20 color rendering.
+   * \li FIRE A LookupTable for SPECT rendering
    *
    * The different LookupTableTypes can be applied in the MitkWorkbench via right-clicking
    * on an image and choosing a color map.
@@ -212,7 +213,8 @@ public:
     LEGACY_RAINBOW_COLOR,
     MULTILABEL,
     PET_COLOR,
-    PET_20
+    PET_20,
+    FIRE
   };
 
   static const char* const typenameList[];
@@ -249,6 +251,7 @@ protected:
   virtual void BuildJetLookupTable(bool transparent = false);
   virtual void BuildPETColorLookupTable();
   virtual void BuildPET20LookupTable();
+  virtual void BuildFIRELookupTable();
   virtual void BuildMultiLabelLookupTable();
 
   vtkSmartPointer<vtkLookupTable> m_LookupTable;
