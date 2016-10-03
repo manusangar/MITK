@@ -31,6 +31,7 @@ set(CPP_FILES
   DataManagement/mitkContourSet.cpp
   DataManagement/mitkExtrudedContour.cpp
   Interactions/mitkAdaptiveRegionGrowingTool.cpp
+  Interactions/mitkAdaptiveTumorSegTool.cpp
   Interactions/mitkAddContourTool.cpp
   Interactions/mitkAutoCropTool.cpp
   Interactions/mitkAutoSegmentationTool.cpp

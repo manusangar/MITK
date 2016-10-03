@@ -100,7 +100,7 @@ QmitkSlicesInterpolator::QmitkSlicesInterpolator(QWidget* parent, const char*  /
   m_CmbInterpolation->addItem("3-Dimensional");
   vboxLayout->addWidget(m_CmbInterpolation);
 
-  m_BtnApply2D = new QPushButton("Confirm for single slice", m_GroupBoxEnableExclusiveInterpolationMode);
+  m_BtnApply2D = new QPushButton("Confirm for &single slice", m_GroupBoxEnableExclusiveInterpolationMode);
   vboxLayout->addWidget(m_BtnApply2D);
 
   m_BtnApplyForAllSlices2D = new QPushButton("Confirm for all slices", m_GroupBoxEnableExclusiveInterpolationMode);
@@ -150,13 +150,17 @@ QmitkSlicesInterpolator::QmitkSlicesInterpolator(QWidget* parent, const char*  /
 
   m_FeedbackNode->SetProperty( "binary", mitk::BoolProperty::New(true) );
   m_FeedbackNode->SetProperty( "outline binary", mitk::BoolProperty::New(true) );
+  m_FeedbackNode->SetProperty( "outline width", mitk::FloatProperty::New(2.0) );
   m_FeedbackNode->SetProperty( "color", mitk::ColorProperty::New(255.0, 255.0, 0.0) );
   m_FeedbackNode->SetProperty( "texture interpolation", mitk::BoolProperty::New(false) );
   m_FeedbackNode->SetProperty( "layer", mitk::IntProperty::New( 20 ) );
   m_FeedbackNode->SetProperty( "levelwindow", mitk::LevelWindowProperty::New( mitk::LevelWindow(0, 1) ) );
   m_FeedbackNode->SetProperty( "name", mitk::StringProperty::New("Interpolation feedback") );
-  m_FeedbackNode->SetProperty( "opacity", mitk::FloatProperty::New(0.8) );
+  m_FeedbackNode->SetProperty( "opacity", mitk::FloatProperty::New(0.3) );
   m_FeedbackNode->SetProperty( "helper object", mitk::BoolProperty::New(true) );
+  m_FeedbackNode->SetProperty( "labelset.contour.active", mitk::BoolProperty::New(true) );
+  m_FeedbackNode->SetProperty( "labelset.contour.all", mitk::BoolProperty::New(false) ); 
+  m_FeedbackNode->SetProperty( "labelset.contour.width", mitk::FloatProperty::New(2.0) );
 
   m_InterpolatedSurfaceNode = mitk::DataNode::New();
   m_InterpolatedSurfaceNode->SetProperty( "color", mitk::ColorProperty::New(SURFACE_COLOR_RGB) );

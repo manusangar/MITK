@@ -1,5 +1,6 @@
 set( CPP_FILES
 Qmitk/QmitkAdaptiveRegionGrowingToolGUI.cpp
+Qmitk/QmitkAdaptiveTumorSegToolGUI.cpp
 Qmitk/QmitkBinaryThresholdToolGUI.cpp
 Qmitk/QmitkBinaryThresholdULToolGUI.cpp
 Qmitk/QmitkCalculateGrayValueStatisticsToolGUI.cpp
@@ -29,6 +30,7 @@ Qmitk/QmitkBodyDetectionToolGUI.cpp
 
 set(MOC_H_FILES
 Qmitk/QmitkAdaptiveRegionGrowingToolGUI.h
+Qmitk/QmitkAdaptiveTumorSegToolGUI.h
 Qmitk/QmitkBinaryThresholdToolGUI.h
 Qmitk/QmitkBinaryThresholdULToolGUI.h
 Qmitk/QmitkCalculateGrayValueStatisticsToolGUI.h
@@ -57,6 +59,7 @@ Qmitk/QmitkBodyDetectionToolGUI.h
 
 set(UI_FILES
 Qmitk/QmitkAdaptiveRegionGrowingToolGUIControls.ui
+Qmitk/QmitkAdaptiveTumorSegToolGUIControls.ui
 Qmitk/QmitkConfirmSegmentationDialog.ui
 Qmitk/QmitkOtsuToolWidgetControls.ui
 Qmitk/QmitkPickingToolGUIControls.ui

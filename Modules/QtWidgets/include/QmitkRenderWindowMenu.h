@@ -106,7 +106,7 @@ protected:
   void CreateSettingsWidget();
 
   /*! Reimplemented from QWidget. The paint event is a request to repaint all or part of a widget.*/
-  void paintEvent(QPaintEvent *event);
+  void paintEvent(QPaintEvent *event) override;
 
   /*! Update list of layout direction (axial, coronal, sagital or threeD). Set action of currect layout direction
   to disable and all other to enable. Normaly the user can switch here between the different layout direction, but

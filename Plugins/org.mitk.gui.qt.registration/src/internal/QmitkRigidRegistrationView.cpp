@@ -243,7 +243,7 @@ void QmitkRigidRegistrationView::CreateQtPartControl(QWidget* parent)
   m_Controls.m_ManualFrame->setEnabled(false);
   m_Parent->setEnabled(false);
 
-  this->m_Controls.m_RigidTransform->removeTab(1);
+  //this->m_Controls.m_RigidTransform->removeTab(1);
 
   mitk::NodePredicateAnd::Pointer andPred =                       // we want binary images in the selectors
     mitk::NodePredicateAnd::New(mitk::NodePredicateDataType::New("Image"),
@@ -360,10 +360,10 @@ void QmitkRigidRegistrationView::CreateConnections()
   connect(m_Controls.m_YScaleSlider, SIGNAL(valueChanged(int)), this, SLOT(yScale_valueChanged(int)));
   connect(m_Controls.m_ZScaleSlider, SIGNAL(valueChanged(int)), this, SLOT(zScale_valueChanged(int)));
 
-  /*connect(m_Controls.m_LoadRigidRegistrationParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(LoadRigidRegistrationParameter()));
+  connect(m_Controls.m_LoadRigidRegistrationParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(LoadRigidRegistrationParameter()));
   connect(m_Controls.m_SaveRigidRegistrationParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(SaveRigidRegistrationParameter()));
-  connect(m_Controls.m_LoadRigidRegistrationTestParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(LoadRigidRegistrationTestParameter()));
-  connect(m_Controls.m_SaveRigidRegistrationTestParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(SaveRigidRegistrationTestParameter()));*/
+  //connect(m_Controls.m_LoadRigidRegistrationTestParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(LoadRigidRegistrationTestParameter()));
+  //connect(m_Controls.m_SaveRigidRegistrationTestParameter, SIGNAL(clicked()), m_Controls.qmitkRigidRegistrationSelector1, SLOT(SaveRigidRegistrationTestParameter()));
   connect(this, SIGNAL(PresetSelected(QString)), m_Controls.qmitkRigidRegistrationSelector1, SLOT(LoadRigidRegistrationPresetParameter(QString) ) );
   connect(m_Controls.m_LoadRigidRegistrationParameter, SIGNAL(clicked()), this, SLOT(LoadSelectedPreset()) );
   connect(m_Controls.m_RigidRegistrationPresetBox, SIGNAL(activated(int)), this, SLOT(PresetSelectionChanged()) );
